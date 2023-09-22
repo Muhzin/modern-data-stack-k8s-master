@@ -2,9 +2,15 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 import subprocess
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def run_dbt():
+    logger.info("Running dbt...")
     subprocess.run(['dbt', 'run'], check=True)
+    logger.info("dbt run completed.")
 
 default_args = {
     'owner': 'airflow',
@@ -18,7 +24,7 @@ with DAG(
 ) as dag:
     ingest_data = PythonOperator(
         task_id='ingest_data',
-        python_callable=lambda: print("Ingesting data..."),
+        python_callable=lambda: logger.info("Ingesting data..."),
     )
 
     transform_data = PythonOperator(
