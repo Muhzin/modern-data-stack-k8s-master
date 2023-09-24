@@ -1,0 +1,7 @@
+airflow:
+  image:
+    repository: apache/airflow
+    tag: 2.5.1
+  executor: LocalExecutor
+  config:
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
