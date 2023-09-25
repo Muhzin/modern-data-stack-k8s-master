@@ -1,0 +1,16 @@
+# dbt
+dbt/target/
+dbt/dbt_packages/
+
+# Airflow
+airflow/logs/
+
+# Environment files
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Mac
+.DS_Store
